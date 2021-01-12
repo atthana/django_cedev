@@ -7,6 +7,6 @@ def hello(request, id):
     return HttpResponse("<h1>Hello Q-Electronics</h1>" + greeting)
 
 
-def article(request):
-    return HttpResponse('Article')
+def article(request, year, slug):
+    return HttpResponse('Article year = ' + str(year) + ' Slug = ' + str(slug))
 
