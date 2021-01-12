@@ -10,5 +10,11 @@
 <h2>My id is {{ id }}</h2>
 <h2>My name is {{ name }}</h2>
 <h2>My email is {{ email }}</h2>
+
+{% if id == '001' and name == 'Atthana' %}
+    <h3>Access OK!</h3>
+{% else %}
+    <h3>Access Error!</h3>
+{% endif %}
 </body>
 </html>
