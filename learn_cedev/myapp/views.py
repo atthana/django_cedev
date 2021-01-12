@@ -3,7 +3,14 @@ from django.http import HttpResponse
 
 
 def index(request):
-    return render(request, 'index.html')
+    id = '001'
+    name = 'Atthana'
+    email = 'atthana.p@codium.co'
+    return render(request, 'index.html', {
+        'id': id,
+        'name': name,
+        'email': email
+    })
     # มันคือให้ render ไปที่ index.html ซึ่งอยู่ที่ templates/index.html ตามที่เราตั้งไว้ที่ settings line 61 นะ
 
 
