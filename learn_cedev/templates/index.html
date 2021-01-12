@@ -1,34 +1,35 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body>
-<h1>Hello Q-Developer from template folder</h1>
-<h2>My id is {{ id }}</h2>
-<h2>My name is {{ name }}</h2>
-<h2>My email is {{ email }}</h2>
+{% extends "layouts/base.html" %}
 
-{% if id == '001' and name == 'Atthana' %}
-    <h3>Access OK!</h3>
-{% else %}
-    <h3>Access Error!</h3>
-{% endif %}
+{% block title %}
+    Q-Electronics
+{% endblock %}
+{#ชุด block title นี้จะใส่ไม่ใส่ก็ได้นะ เพราะเราได้ตั้ง defautl ไว้แล้วในหน้า base.html#}
 
-My activities are:
-<ul>
-    {% for activity in activities %}
-        <li>{{ activity }}</li>
-    {% endfor %}
-</ul>
 
-<a href="{% url 'myapp:index' %}">Go to index page</a><br>
-<a href="{% url 'myapp:hello' id=2 %}">Go to hello page</a><br>
-{#วิธีการส่ง parameter 1 ตัว เข้าไปด้วยนะ ก้อแค่ใส่ตามหลังไป#}
-{#วิธีการส่ง parameter 2 ตัว เข้าไปด้วยนะ ก้อผ่านเข้าไป 2 ตัวได้เลยคือ year, slug แบบข้างล่างนะ#}
+{% block content %}
+    <h1>Hello Q-Developer from template folder</h1>
+    <h2>My id is {{ id }}</h2>
+    <h2>My name is {{ name }}</h2>
+    <h2>My email is {{ email }}</h2>
 
-<a href="{% url 'myapp:article' year=2021 slug='Q-Elec-CODIUM'%}">Go to article page</a>
-</body>
-</html>
+    {% if id == '001' and name == 'Atthana' %}
+        <h3>Access OK!</h3>
+    {% else %}
+        <h3>Access Error!</h3>
+    {% endif %}
+
+    My activities are:
+    <ul>
+        {% for activity in activities %}
+            <li>{{ activity }}</li>
+        {% endfor %}
+    </ul>
+
+    <a href="{% url 'myapp:index' %}">Go to index page</a><br>
+    <a href="{% url 'myapp:hello' id=2 %}">Go to hello page</a><br>
+    {#วิธีการส่ง parameter 1 ตัว เข้าไปด้วยนะ ก้อแค่ใส่ตามหลังไป#}
+    {#วิธีการส่ง parameter 2 ตัว เข้าไปด้วยนะ ก้อผ่านเข้าไป 2 ตัวได้เลยคือ year, slug แบบข้างล่างนะ#}
+
+    <a href="{% url 'myapp:article' year=2021 slug='Q-Elec-CODIUM' %}">Go to article page</a>
+
+{% endblock %}
