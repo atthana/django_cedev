@@ -1,5 +1,10 @@
 from django.db import models
 
+BOOK_LEVEL_CHOICE = (  # โชว์ชุดหลัง แต่เซฟด้วยชุดหน้า เช่น โชว์ Basic แต่เซฟด้วย B นะ
+    ('B', 'Basic'),
+    ('M', 'Medium'), 
+    ('A', 'Advance'),
+)
 
 class Category(models.Model):
     name = models.CharField(max_length=100)
@@ -29,6 +34,7 @@ class Book(models.Model):
     price = models.FloatField(default=0)
     category = models.ForeignKey(Category, null=True, blank=True, on_delete=models.CASCADE)
     author = models.ManyToManyField(Author, blank=True)
+    level = models.CharField(max_length=5, null=True, blank=True, choices=BOOK_LEVEL_CHOICE)   # เอา choices จากข้างบนมาใช้
     published = models.BooleanField(default=False)
     created = models.DateTimeField(auto_now_add=True)
     updated = models.DateTimeField(auto_now=True)
