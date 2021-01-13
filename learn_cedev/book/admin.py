@@ -6,6 +6,12 @@ class BookCommentStackedInline(admin.StackedInline):
     model = BookComment  # บอกมันว่าจะเอา model ไหนมาทำ
 
 
+class BookTabularInline(admin.TabularInline):
+    model = BookComment
+    extra = 2
+    # คือมันจะจองพื้นที่ด้านล่างของ comment ให้เราเป็นจำนวน line นะ ใช้แทนกันได้อยู่ที่ความสบายตา ระหว่าง StackedInline กับ TabularInline
+
+
 class BookAdmin(admin.ModelAdmin):
     list_display = ['code', 'name', 'category', 'price', 'published']
     list_filter = ['published']
@@ -17,7 +23,7 @@ class BookAdmin(admin.ModelAdmin):
         ('Category', {'fields': ['category', 'author'], 'classes': ['collapse']}),
     )
     # fieldsets เป็นการจัดกลุ่มให้เป็น set นะในหน้า admin เพื่อให้ไม่รกตาเกินไป
-    inlines = [ BookCommentStackedInline ]
+    inlines = [BookTabularInline]
 
 
 admin.site.register(Category)
