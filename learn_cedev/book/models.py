@@ -4,12 +4,18 @@ from django.db import models
 class Category(models.Model):
     name = models.CharField(max_length=100)
 
+    class Meta:
+        verbose_name_plural = "Category"
+
     def __str__(self):
         return self.name
 
 
 class Author(models.Model):
     name = models.CharField(max_length=100)
+
+    class Meta:
+        verbose_name_plural = "Author"
 
     def __str__(self):
         return self.name
@@ -26,6 +32,9 @@ class Book(models.Model):
     published = models.BooleanField(default=False)
     created = models.DateTimeField(auto_now_add=True)
     updated = models.DateTimeField(auto_now=True)
+
+    class Meta:
+        verbose_name_plural = "Book"
 
     def __str__(self):
         return self.name
