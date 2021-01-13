@@ -13,7 +13,7 @@ class BookTabularInline(admin.TabularInline):
 
 
 class BookAdmin(admin.ModelAdmin):
-    list_display = ['code', 'name', 'category', 'price', 'level', 'published']
+    list_display = ['code', 'name', 'category', 'price', 'level', 'published', 'show_image']
     list_filter = ['published']
     search_fields = ['code', 'name']
     prepopulated_fields = {'slug': ['name']}

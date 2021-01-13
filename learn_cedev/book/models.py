@@ -1,4 +1,5 @@
 from django.db import models
+from django.utils.html import format_html
 
 BOOK_LEVEL_CHOICE = (  # โชว์ชุดหลัง แต่เซฟด้วยชุดหน้า เช่น โชว์ Basic แต่เซฟด้วย B นะ
     ('B', 'Basic'),
@@ -46,6 +47,13 @@ class Book(models.Model):
 
     def __str__(self):
         return self.name
+
+    def show_image(self):
+        if self.image:
+            return format_html('<img src="' + self.image.url + '" height="50px">')
+        return ''  # เช็คว่ามีรูปไหม ถ้ามีก้อโชว ถ้าไม่มีก้อเอาค่าว่างๆออกไป
+    show_image.allow_tags = True  # allow tage เพื่อให้มันแปลความหมายของ tag ข้างบน
+
 
 
 class BookComment(models.Model):
