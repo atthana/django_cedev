@@ -29,3 +29,13 @@ class Book(models.Model):
 
     def __str__(self):
         return self.name
+
+
+class BookComment(models.Model):
+    book = models.ForeignKey(Book, on_delete=models.CASCADE)
+    comment = models.CharField(max_length=100)
+    rating = models.IntegerField(default=0)
+
+    def __str__(self):
+        return self.comment
+

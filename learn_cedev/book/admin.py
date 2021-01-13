@@ -1,5 +1,10 @@
 from django.contrib import admin
-from .models import Category, Author, Book
+from .models import Category, Author, Book, BookComment
+
+
+class BookCommentStackedInline(admin.StackedInline):
+    model = BookComment  # บอกมันว่าจะเอา model ไหนมาทำ
+
 
 class BookAdmin(admin.ModelAdmin):
     list_display = ['code', 'name', 'category', 'price', 'published']
@@ -12,6 +17,7 @@ class BookAdmin(admin.ModelAdmin):
         ('Category', {'fields': ['category', 'author'], 'classes': ['collapse']}),
     )
     # fieldsets เป็นการจัดกลุ่มให้เป็น set นะในหน้า admin เพื่อให้ไม่รกตาเกินไป
+    inlines = [ BookCommentStackedInline ]
 
 
 admin.site.register(Category)
