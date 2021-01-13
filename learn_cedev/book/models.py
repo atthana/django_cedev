@@ -34,6 +34,7 @@ class Book(models.Model):
     updated = models.DateTimeField(auto_now=True)
 
     class Meta:
+        ordering = ['-code']  # ถ้ามีติดลบนำหน้า คือเรียงจากมากไปน้อย
         verbose_name_plural = "Book"
 
     def __str__(self):
@@ -44,6 +45,10 @@ class BookComment(models.Model):
     book = models.ForeignKey(Book, on_delete=models.CASCADE)
     comment = models.CharField(max_length=100)
     rating = models.IntegerField(default=0)
+
+    class Meta:
+        ordering = ['id']  # เรียงตาม id จากน้อยไปมาก (id ไม่มีใน Model แต่ Django สร้างให้เราแล้วนะ)
+        verbose_name_plural = "Book Comment"
 
     def __str__(self):
         return self.comment
