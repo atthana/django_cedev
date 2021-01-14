@@ -1,0 +1,15 @@
+{% extends "layouts/base.html" %}
+
+{% block title %}
+    Book page
+{% endblock %}
+{#ชุด block title นี้จะใส่ไม่ใส่ก็ได้นะ เพราะเราได้ตั้ง defautl ไว้แล้วในหน้า base.html#}
+
+
+{% block content %}
+    <ul>
+        {% for b in books %}
+            <li>{{ b.id }} {{ b.name }}</li>
+        {% endfor %}
+    </ul>
+{% endblock %}

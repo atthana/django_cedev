@@ -30,6 +30,7 @@
     {#วิธีการส่ง parameter 1 ตัว เข้าไปด้วยนะ ก้อแค่ใส่ตามหลังไป#}
     {#วิธีการส่ง parameter 2 ตัว เข้าไปด้วยนะ ก้อผ่านเข้าไป 2 ตัวได้เลยคือ year, slug แบบข้างล่างนะ#}
 
-    <a href="{% url 'myapp:article' year=2021 slug='Q-Elec-CODIUM' %}">Go to article page</a>
+    <a href="{% url 'myapp:article' year=2021 slug='Q-Elec-CODIUM' %}">Go to article page</a><br>
+    <a href="{% url 'book:index' %}">Go to Book Page</a>
 
 {% endblock %}
