@@ -1,15 +1,38 @@
 {% extends "layouts/base.html" %}
 
-{% block title %}
-    Book page
-{% endblock %}
+{% block title %}Book page{% endblock %}
 {#ชุด block title นี้จะใส่ไม่ใส่ก็ได้นะ เพราะเราได้ตั้ง defautl ไว้แล้วในหน้า base.html#}
 
-
 {% block content %}
-    <ul>
-        {% for b in books %}
-            <li>{{ b.id }} {{ b.name }}</li>
-        {% endfor %}
-    </ul>
+    <div class="row">
+        <div class="col-2">
+            <div class="list-group">
+              <a href="#" class="list-group-item list-group-item-action active">All</a>
+                {% for c in categories %}
+                    <a href="#" class="list-group-item list-group-item-action">{{ c.name }}</a>
+                {% endfor %}
+            </div>
+        </div>
+        <div class="col-12">
+            <h1>Book</h1>
+
+            <div class="row">
+                {% for b in books %}
+                <div class="col-lg-3">
+                    <div class="card">
+                        <a href="#">
+                            <img src="{{ b.image.url }}" alt="" class="card-img-top">
+                        </a>
+                        <div class="card-body">
+                            <h5><a href="#">{{ b.name }}</a></h5>
+                            <div>Category: {{ b.category.name }}</div>
+                            <div>Price: {{ b.price | floatformat:2 }}</div>
+                            <a href="#" class="btn btn-info mt-4">View detail</a>
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
 {% endblock %}
