@@ -22,12 +22,12 @@
                 <div class="col-lg-3">
                     <div class="card mb-4">
                         {% if b.image %}
-                        <a href="#">
+                        <a href="{% url 'book:detail' slug=b.slug %}">
                             <img src="{{ b.image.url }}" alt="" class="card-img-top">
                         </a>
                         {% endif %}
                         <div class="card-body">
-                            <h5><a href="#">{{ b.name }}</a></h5>
+                            <h5><a href="{% url 'book:detail' slug=b.slug %}">{{ b.name }}</a></h5>
                             <div>Category: {{ b.category.name }}</div>
                             <div>Price: {{ b.price | floatformat:2 }}</div>
                             <div>Author: </div>
@@ -35,7 +35,7 @@
                                 <span class="badge badge-pill badge-secondary">{{ a.name }}</span>
                             {% endfor %}
                             <br>
-                            <a href="#" class="btn btn-info mt-4">View detail</a>
+                            <a href ="{% url 'book:detail' slug=b.slug %}" class="btn btn-info mt-4">View detail</a>
                         </div>
                     </div>
                 </div>

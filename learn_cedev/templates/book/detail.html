@@ -1,0 +1,20 @@
+{% extends "layouts/base.html" %}
+
+{% block title %}Book Detail{% endblock %}
+
+{% block content %}
+    <div class="row">
+        <div class="col-lg-2">
+            {% if book.image %}
+                <img src="{{ book.image.url }}" class="img-fluid mb-4">
+            {% endif %}
+        </div>
+        <div class="col-lg-10">
+            <h1>{{ book.name }}</h1>
+            <div>Category: {{ book.category }}</div>
+            <div>Price: {{ book.price|floatformat:2 }}</div>
+            <a href="#" class="btn btn-success mt-5">Add to cart</a>
+        </div>
+    </div><
+    <a href="{% url 'book:index' %}" class="mt-4">Back to previous page</a>
+{% endblock %}

@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render, get_object_or_404
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from .models import Category, Book
 
@@ -27,4 +27,11 @@ def index(request):
         'categories': categories,
         'books': books,
         'categ_id': categ_id,
+    })
+
+
+def detail(request, slug):
+    book = get_object_or_404(Book, slug=slug)
+    return render(request, 'book/detail.html', {
+        'book': book
     })
