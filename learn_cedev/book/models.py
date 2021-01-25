@@ -54,6 +54,9 @@ class Book(models.Model):
         return ''  # เช็คว่ามีรูปไหม ถ้ามีก้อโชว ถ้าไม่มีก้อเอาค่าว่างๆออกไป
     show_image.allow_tags = True  # allow tage เพื่อให้มันแปลความหมายของ tag ข้างบน
 
+    def get_comment_count(self):
+        return self.bookcomment_set.count()
+
 
 
 class BookComment(models.Model):

@@ -17,7 +17,7 @@
         </div>
     </div><
 
-    <h1>Comment</h1>
+    <h1>Comment ({{ book.get_comment_count }})</h1>
     {% for c in book.bookcomment_set.all %}
     <div class="card mb-4">
         <div class="card-body">
