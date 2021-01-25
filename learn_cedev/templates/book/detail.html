@@ -16,5 +16,16 @@
             <a href="#" class="btn btn-success mt-5">Add to cart</a>
         </div>
     </div><
+
+    <h1>Comment</h1>
+    {% for c in book.bookcomment_set.all %}
+    <div class="card mb-4">
+        <div class="card-body">
+            <h5>{{ c.comment }}</h5>
+            <div>Rating: {{ c.rating }}</div>
+        </div>
+    </div>
+    {% endfor %}
+
     <a href="{% url 'book:index' %}" class="mt-4">Back to previous page</a>
 {% endblock %}
