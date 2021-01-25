@@ -1,4 +1,5 @@
 {% extends "layouts/base.html" %}
+{% load humanize %}
 
 {% block title %}Book page{% endblock %}
 {#ชุด block title นี้จะใส่ไม่ใส่ก็ได้นะ เพราะเราได้ตั้ง defautl ไว้แล้วในหน้า base.html#}
@@ -29,7 +30,7 @@
                         <div class="card-body">
                             <h5><a href="{% url 'book:detail' slug=b.slug %}">{{ b.name }}</a></h5>
                             <div>Category: {{ b.category.name }}</div>
-                            <div>Price: {{ b.price | floatformat:2 }}</div>
+                            <div>Price: {{ b.price | floatformat:2|intcomma }}</div>
                             <div>Author: </div>
                             {% for a in b.author.all %}
                                 <span class="badge badge-pill badge-secondary">{{ a.name }}</span>
