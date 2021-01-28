@@ -58,7 +58,6 @@ class Book(models.Model):
         return self.bookcomment_set.count()
 
 
-
 class BookComment(models.Model):
     book = models.ForeignKey(Book, on_delete=models.CASCADE)
     comment = models.CharField(max_length=100)

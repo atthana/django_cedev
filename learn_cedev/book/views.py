@@ -1,5 +1,7 @@
 from django.shortcuts import render, get_object_or_404
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
+
+from .forms import BookForm
 from .models import Category, Book
 
 
@@ -34,4 +36,11 @@ def detail(request, slug):
     book = get_object_or_404(Book, slug=slug)
     return render(request, 'book/detail.html', {
         'book': book
+    })
+
+
+def book_add(request):
+    form = BookForm()
+    return render(request, 'book/add.html', {
+        'form': form
     })
