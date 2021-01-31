@@ -5,6 +5,8 @@
 
 {% block content %}
     <h1>Book Add</h1>
-
-    {{ form }}
+    <table>
+        {{ form.as_table }}
+    </table>
+    {#    ใส่ .as_p คือการใช้ tag p ของ html มาช่วยจัด layout นะ ทุก element ใน form จะมี tag p ครอบอยู่นั่นเอง หรือ ใช้ as_table ดีกว่า #}
 {% endblock content %}
