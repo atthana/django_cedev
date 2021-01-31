@@ -5,6 +5,10 @@
 {#ชุด block title นี้จะใส่ไม่ใส่ก็ได้นะ เพราะเราได้ตั้ง defautl ไว้แล้วในหน้า base.html#}
 
 {% block content %}
+    <h1>Book List</h1>
+    <a href="{% url 'book:book_add' %}" class="btn btn-warning mb-2">Add new book</a>
+    <hr>
+
     <div class="row">
         <div class="col-2">
 
@@ -16,8 +20,6 @@
             </div>
         </div>
         <div class="col-10">
-            <h1>Book</h1>
-
             <div class="row">
                 {% for b in books %}
                 <div class="col-lg-3">
