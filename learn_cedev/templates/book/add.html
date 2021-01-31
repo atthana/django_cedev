@@ -7,11 +7,14 @@
 {% block content %}
     <h1>Book Add</h1>
 
-    <form method="post" enctype="multipart/form-data" action="">
-        {% csrf_token %}
-        {{ form|crispy }}
-        {#    ใส่ .as_p คือการใช้ tag p ของ html มาช่วยจัด layout นะ ทุก element ใน form จะมี tag p ครอบอยู่นั่นเอง หรือ ใช้ as_table ดีกว่า #}
-        <button type="submit" class="btn btn-primary mt-4">Save book</button>
-    </form>
-
+    <div class="row">
+        <div class="col-lg-6 offset-lg-3">
+            <form method="post" enctype="multipart/form-data" action="">
+                {% csrf_token %}
+                {{ form|crispy }}
+                {#    ใส่ .as_p คือการใช้ tag p ของ html มาช่วยจัด layout นะ ทุก element ใน form จะมี tag p ครอบอยู่นั่นเอง หรือ ใช้ as_table ดีกว่า #}
+                <button type="submit" class="btn btn-primary mt-4">Save book</button>
+            </form>
+        </div>
+    </div>
 {% endblock content %}
