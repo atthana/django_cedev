@@ -1,0 +1,36 @@
+{% extends "layouts/base.html" %}
+{% load humanize %}
+
+{% block title %}Shopping Cart{% endblock %}
+
+{% block content %}
+
+
+    <div class="row">
+        <div class="col-lg-6 offset-lg-3">
+            <h1>Cart List</h1>
+            <table class="table table-bordered">
+                <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Qty</th>
+                    <th>Price</th>
+                    <th>Action</th>
+                </tr>
+                </thead>
+                <tobody>
+                    <tr>
+                        <td>Item1</td>
+                        <td>1</td>
+                        <td>200.0</td>
+                        <td>
+                            <a href="#">Delete item</a>
+                        </td>
+                    </tr>
+                </tobody>
+
+            </table>
+
+        </div>
+    </div>
+{% endblock %}

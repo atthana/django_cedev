@@ -67,6 +67,7 @@ def book_add(request):
 
 # ======================== EP7 เรื่อง CBV ===============================
 
+
 from django.views.generic import ListView, DetailView
 
 
@@ -91,3 +92,41 @@ class BookDetailView(DetailView):
     model = Book
     template_name = 'book/detail.html'
     slug_url_kwarg = 'slug'
+
+
+# ==================== EP8 เรื่อง Session =================================
+
+def cart_add(request, slug):
+    book = get_object_or_404(Book, slug=slug)
+    cart_items = request.session.get('cart_items') or []
+
+    # update existing item
+    duplicated = False
+    for c in cart_items:
+        if c.get('slug') == book.slug:
+            c['qty'] = int(c.get('qty') or '1') + 1
+            duplicated = True
+
+    # insert new item
+    if not duplicated:
+        cart_items.append({
+            'id': book.id,
+            'slug': book.slug,
+            'name': book.name,
+            'qty': 1,
+        })
+
+    return HttpResponseRedirect(reverse('book:cart_list', kwargs={}))
+
+
+def cart_list(request):
+    cart_items = request.session.get('cart_items') or []
+
+    total_qty = 0
+    for c in cart_items:
+        total_qty = total_qty + c.get('qty')
+
+    request.session['cart_qty'] = total_qty
+    return render(request, 'book/cart.html', {
+        'cart_items': cart_items,
+    })

@@ -9,4 +9,7 @@ urlpatterns = [
     path('detail/<slug:slug>/', views.BookDetailView.as_view(), name='detail'),
     # เพิ่มคำว่า detail เพื่อให้อะไรที่มีคำว่า detail ให้มาที่นี่
     re_path(r'add/$', views.book_add, name='book_add'),
+
+    re_path(r'cart/add(?P<slug>[\w-]+)/$', views.cart_add, name='cart_add'),
+    re_path(r'cart/list/$', views.cart_list, name='cart_list'),
 ]
