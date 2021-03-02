@@ -67,7 +67,7 @@ def book_add(request):
 
 # ======================== EP7 เรื่อง CBV ===============================
 
-from django.views.generic import ListView
+from django.views.generic import ListView, DetailView
 
 
 class BookListView(ListView):
@@ -85,3 +85,9 @@ class BookListView(ListView):
             'categories': Category.objects.all(),
         })
         return cd
+
+
+class BookDetailView(DetailView):
+    model = Book
+    template_name = 'book/detail.html'
+    slug_url_kwarg = 'slug'
