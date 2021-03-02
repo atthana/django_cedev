@@ -116,6 +116,7 @@ def cart_add(request, slug):
             'qty': 1,
         })
 
+    request.session['cart_items'] = cart_items  # เป็นการเอา array ที่เราได้ ไป update เก็บลงใน session ก่อน
     return HttpResponseRedirect(reverse('book:cart_list', kwargs={}))
 
 

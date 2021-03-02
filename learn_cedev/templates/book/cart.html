@@ -18,16 +18,18 @@
                     <th>Action</th>
                 </tr>
                 </thead>
-                <tobody>
+                <tbody>
+                {% for c in cart_items %}
                     <tr>
-                        <td>Item1</td>
-                        <td>1</td>
-                        <td>200.0</td>
+                        <td>{{ c.name }}</td>
+                        <td>{{ c.qty }}</td>
+                        <td>{{ c.price }}</td>
                         <td>
                             <a href="#">Delete item</a>
                         </td>
                     </tr>
-                </tobody>
+                {% endfor %}
+                </tbody>
 
             </table>
 
