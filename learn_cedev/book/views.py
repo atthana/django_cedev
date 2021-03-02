@@ -98,7 +98,7 @@ class BookDetailView(DetailView):
 
 def cart_add(request, slug):
     book = get_object_or_404(Book, slug=slug)
-    cart_items = request.session.get('cart_items') or []
+    cart_items = request.session.get('cart_items') or []  # อ่านข้อมูลจาก session
 
     # update existing item
     duplicated = False
@@ -113,6 +113,7 @@ def cart_add(request, slug):
             'id': book.id,
             'slug': book.slug,
             'name': book.name,
+            'price': book.price,
             'qty': 1,
         })
 
@@ -121,7 +122,7 @@ def cart_add(request, slug):
 
 
 def cart_list(request):
-    cart_items = request.session.get('cart_items') or []
+    cart_items = request.session.get('cart_items') or []  # อ่านข้อมูลจาก session
 
     total_qty = 0
     for c in cart_items:
@@ -131,3 +132,15 @@ def cart_list(request):
     return render(request, 'book/cart.html', {
         'cart_items': cart_items,
     })
+
+
+def cart_delete(request, slug):
+    cart_items = request.session.get('cart_items') or []  # อ่านข้อมูลจาก session
+
+    for i in range(len(cart_items)):
+        if cart_items[i]['slug'] == slug:
+            del cart_items[i]
+            break
+
+    request.session['cart_items'] = cart_items
+    return HttpResponseRedirect(reverse('book:cart_list', kwargs={}))

@@ -11,5 +11,6 @@ urlpatterns = [
     re_path(r'add/$', views.book_add, name='book_add'),
 
     re_path(r'cart/add(?P<slug>[\w-]+)/$', views.cart_add, name='cart_add'),
+    re_path(r'cart/delete(?P<slug>[\w-]+)/$', views.cart_delete, name='cart_delete'),
     re_path(r'cart/list/$', views.cart_list, name='cart_list'),
 ]
