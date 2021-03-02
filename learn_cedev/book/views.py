@@ -1,11 +1,10 @@
-from django.shortcuts import render, get_object_or_404
+from django.contrib import messages
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
-
+from django.http import HttpResponseRedirect
+from django.shortcuts import render, get_object_or_404
+from django.urls import reverse
 # import เข้ามาเพิ่มเพื่อจัดการกับ method 'POST' นะ
 from slugify import slugify
-from django.contrib import messages
-from django.http import HttpResponseRedirect
-from django.urls import reverse
 
 from .forms import BookForm
 from .models import Category, Book
@@ -65,3 +64,24 @@ def book_add(request):
     return render(request, 'book/add.html', {  # โดยถ้า save fail, message ก้อจะกลับมาโชว์ที่เดิมนะ โดย code ชุดนี้จะไม่ทำนะ กรณี success เพราะได้ return redirect ไปก่อนแล้ว
         'form': form
     })
+
+# ======================== EP7 เรื่อง CBV ===============================
+
+from django.views.generic import ListView
+
+
+class BookListView(ListView):
+    model = Book
+    template_name = 'book/index.html'
+    context_object_name = 'books'
+    paginate_by = 5
+
+    def get_queryset(self):
+        return Book.objects.filter(published=True)
+
+    def get_context_data(self, *args, **kwargs):
+        cd = super(BookListView, self).get_context_data(*args, **kwargs)
+        cd.update({
+            'categories': Category.objects.all(),
+        })
+        return cd
