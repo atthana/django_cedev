@@ -1,4 +1,4 @@
-from django.contrib.auth import login
+from django.contrib.auth import login, logout
 from django.shortcuts import render, redirect
 from django.http import HttpResponse
 from django.contrib.auth.forms import AuthenticationForm
@@ -42,3 +42,7 @@ def login_view(request):
         'form': form,
     })
 
+def logout_view(request):
+    if request.method == 'POST':
+        logout(request)
+        return redirect('myapp:index')  # พอ logout สำเร็จก้อให้ไปหน้าแรกของระบบเลย ง่ายมาก

@@ -28,6 +28,16 @@
 
     <a class="btn btn-outline-primary mx-2" href="#">Sign up</a>
     <a class="btn btn-info mx-2" href="{% url 'myapp:login' %}">Log in</a>
+
+    {% if user.is_authenticated %}
+        <span>Hello, {{ request.user.username }}</span>
+        <form method="post" action="{% url 'myapp:logout' %}" novalidate>
+            {% csrf_token %}
+            <button type="submit" class="btn btn-danger">Log out</button>
+        </form>
+    {% endif %}
+
+
 </div>
 
 <div class="container-fluid">
