@@ -1,5 +1,6 @@
 from django.shortcuts import render
 from django.http import HttpResponse
+from django.contrib.auth.forms import AuthenticationForm
 
 
 def index(request):
@@ -25,4 +26,11 @@ def hello(request, id):
 
 def article(request, year, slug):
     return HttpResponse('Article year = ' + str(year) + ' Slug = ' + str(slug))
+
+
+def login_view(request):
+    form = AuthenticationForm()
+    return render(request, 'account/login.html', {
+        'form': form,
+    })
 
