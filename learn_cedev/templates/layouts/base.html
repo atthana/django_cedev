@@ -26,14 +26,16 @@
         <a class="btn btn-secondary mx-2" href="{% url 'book:cart_list' %}"><i class="fa fa-shopping-cart"></i>&nbsp&nbsp{{ request.session.cart_qty }}</a>
     {% endif %}
 
-    <a class="btn btn-outline-primary mx-2" href="#">Sign up</a>
-    <a class="btn btn-info mx-2" href="{% url 'myapp:login' %}">Log in</a>
+    {% if not user.is_authenticated %}
+        <a class="btn btn-outline-primary mx-2" href="#">Sign up</a>
+        <a class="btn btn-info mx-2" href="{% url 'myapp:login' %}">Log in</a>
+    {% endif %}
 
     {% if user.is_authenticated %}
         <span>Hello, {{ request.user.username }}</span>
         <form method="post" action="{% url 'myapp:logout' %}" novalidate>
             {% csrf_token %}
-            <button type="submit" class="btn btn-danger">Log out</button>
+            <button type="submit" class="btn btn-danger mx-2">Log out</button>
         </form>
     {% endif %}
 
